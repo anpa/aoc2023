@@ -1,4 +1,5 @@
-limits = { "red": 12, "green": 13, "blue": 14 }
+limits = {"red": 12, "green": 13, "blue": 14}
+
 
 def is_game_possible(game):
     for set in game:
@@ -7,7 +8,7 @@ def is_game_possible(game):
 
             if limits[color] < int(number):
                 return False
-    
+
     return True
 
 
@@ -23,9 +24,9 @@ def part_1():
 
         if is_game_possible(game):
             result += number
-    
+
     print("Total: ", result)
-        
+
 
 def fewest_number_of_cubes(game):
     max_red = 0
@@ -36,14 +37,15 @@ def fewest_number_of_cubes(game):
         for group in set.split(", "):
             [number, color] = group.split(" ")
 
-            if (color == "red"):
+            if color == "red":
                 max_red = max(max_red, int(number))
-            elif (color == "green"):
+            elif color == "green":
                 max_green = max(max_green, int(number))
-            elif (color == "blue"):
+            elif color == "blue":
                 max_blue = max(max_blue, int(number))
-    
+
     return [max_red, max_green, max_blue]
+
 
 def part_2():
     result = 0
@@ -55,9 +57,9 @@ def part_2():
         number = int(line.split(":")[0].split(" ")[1])
         game = line.split(": ")[1].split("; ")
 
-        [r,g,b] = fewest_number_of_cubes(game)
+        [r, g, b] = fewest_number_of_cubes(game)
         result += r * g * b
-    
+
     print("Total: ", result)
 
 
