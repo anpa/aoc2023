@@ -10,6 +10,10 @@ def number_of_matches(card):
     return result
 
 
+def card_prize(current_card, number_of_matches):
+    return [*range(current_card + 1, current_card + number_of_matches + 1)]
+
+
 def part_1():
     result = 0
 
@@ -26,22 +30,19 @@ def part_1():
 
 
 def part_2():
-    result = 0
-    all_cards = {}
+    card_prizes = {}
 
     file = open("day_04/input.txt", "r")
 
     for i, line in enumerate(file):
         card = line.rstrip()
-        all_cards[i + 1] = number_of_matches(card)
+        num_matches = number_of_matches(card)
+        card_prizes[i + 1] = card_prize(i + 1, num_matches)
 
-    hand = list(all_cards.keys())
+    hand = list(card_prizes.keys())
 
     for card in hand:
-        num_matches = all_cards[card]
-
-        for n in range(card + 1, card + num_matches + 1):
-            hand.append(n)
+        hand += card_prizes[card]
 
     print("Total:", len(hand))
 
